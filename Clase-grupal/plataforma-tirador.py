@@ -141,4 +141,27 @@ window = pygame.display.set_mode((window_width, window_height), pygame.SCALED + 
 pygame.display.set_caption("TilinShooter")
 
 
+enemy = sprite.Group()
+
+for i in range(1,12):
+    monster = Enemy(ide_images,randint(80, window_width -80),-40, 80,50,randint(1,5))
+    enemy.add(monster)
+mauricio = Player(idle_images, 360, 290 - window_height - 3, 5)
+platforms = sprite.Group()
+platforms.add(Platform(0,600, 500, 100))
+platforms.add(Platform(0,400, 300, 100))
+platforms.add
+
+    bullets_left = sprite.Group()
+    finish = False
+
+    run = True
+    while run:
+        for i in event.get():
+            if e.type == QUIT:
+                run = False
+            if e.type == KEYDOWN
+                if e.key == K_LSHIFT:
+
+
 

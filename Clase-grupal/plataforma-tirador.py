@@ -132,13 +132,56 @@ class Bullet(sprite.Sprite):
         if self.rect.right > window_width:
             self.kill()
 
+class Platform(sprite.Sprite):
+    def _init_(self, x, y, width, height, is_movable=False, move_speed=0):
+        super()._init_()
+        self.is_movable= is_movable
+        self.move_speed = move_speed
+        self.image = Surface((width, height))
+        self.image.fill((40,0,80)) 
+        self.rect = self.image.get_rect()
+        self.rect.x = x
+        self.rect.y = y
+        self.direction = 1
 
+    def update(self):
+        if self.is_movable:
+            self.rect.x += self.move_speed
+        if self.rect.left < 600 or self.rect.right > 200 :
+            self.direction *= -1
 
 
 window_height = 700
 window_width = 500
 window = pygame.display.set_mode((window_width, window_height), pygame.SCALED + pygame.RESIZABLE)
 pygame.display.set_caption("TilinShooter")
+
+#intente hacer de tarea los objetos
+enemy = sprite.Group
+#investigar como poner en un grupo un objeto
+for i in range(1,12):
+    monster = Enemy(idle_images, randint(80, window_width -80), -40, 80,50,randint(1,5))
+    #como poner en grupo un objeto
+    enemy.add(monster)
+
+mauricio = Player(idle_images, 360, 290 - window_height - 3, 5)
+platforms = sprite.Group()
+platforms.add(Platform(0, 600, 500, 100))
+platforms.add(Platform(0, 400, 300, 100))
+platforms.add(Platform(0, 200, 100, 100))
+
+bullets_left = sprite.Group()
+finish = False
+
+run = True
+while run:
+    for e in event.get():
+        if e.type==QUIT:
+            run = False
+        if e.type == KEYDOWN:
+            if e.key == K_LSHIFT:
+                mauricio.shoot()
+
 
 
 

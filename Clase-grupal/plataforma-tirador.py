@@ -181,7 +181,8 @@ while run:
         if e.type == KEYDOWN:
             if e.key == K_LSHIFT:
                 mauricio.shoot()
-
+        if not finish:
+            window.blit(background, (0,0))
 
 
 
